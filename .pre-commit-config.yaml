@@ -19,8 +19,8 @@ repos:
       - id: mixed-line-ending
       # - id: no-commit-to-branch
       #   args:
-      #   - -b master
-      #   - -b prod
+      #     - -b master
+      #     - -b prod
       - id: trailing-whitespace
   - repo: https://github.com/broadinstitute/mirrors-pylama
     rev: v7.6.6
@@ -30,3 +30,5 @@ repos:
     rev: v1.15.0
     hooks:
       - id: yamllint
+        args:
+          - -s
