@@ -18,7 +18,7 @@ python = "^3.6"  # Compatible python versions must be declared here
 
 configparser = ">=3.5.0"
 requests = "*"
-toml = "^0.9"
+toml = "^0.10"
 
 [tool.poetry.dev-dependencies]
 bump2version = "*"
