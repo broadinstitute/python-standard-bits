@@ -1,17 +1,18 @@
-FROM python:3.6-alpine
+FROM python:3.8-slim
 
-COPY Pipfile* /usr/src/
-
-RUN apk update \
-    && apk add bash gcc git musl-dev \
-    && pip install pipenv==2018.11.26 --upgrade \
+COPY poetry.lock pyproject.toml README.md /usr/src/
+RUN apt-get update \
+    && apt-get upgrade -yq \
+    && apt-get install -yq curl g++ gcc git \
     && cd /usr/src \
-    && pipenv install --dev --system \
-    && echo "alias test='green -r -vvv'" > /root/.bash_profile \
+    && pip install pip poetry --upgrade \
+    && if [ ! -s poetry.lock ]; then rm -f poetry.lock; fi \
+    && poetry install \
     && rm -rf /tmp/* \
-    && rm -rf /var/cache/apk/* \
+    && rm -rf /var/cache/apt/* \
     && rm -rf /var/tmp/*
 
 WORKDIR /usr/src
 
-CMD ["bash", "-l"]
+ENTRYPOINT ["poetry", "run"]
+CMD ["bash"]
