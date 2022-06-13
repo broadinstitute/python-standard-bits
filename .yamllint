@@ -6,3 +6,5 @@ rules:
     level: warning
   indentation:
     spaces: 2
+ignore: |
+  .venv/
