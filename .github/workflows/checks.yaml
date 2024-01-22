@@ -33,7 +33,7 @@ jobs:
           echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
 
       - name: 'Cache poetry'
-        uses: 'actions/cache@v3'
+        uses: 'actions/cache@v4'
         with:
           path: '.venv'
           key: venv-v1-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
@@ -73,7 +73,7 @@ jobs:
 #         echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
 
 #     - name: 'Cache poetry'
-#       uses: 'actions/cache@v3'
+#       uses: 'actions/cache@v4'
 #       with:
 #         path: '.venv'
 #         key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
